@@ -101,15 +101,15 @@ Specifies whether the group defined by `configure_sshd_AllowGroups` should be cr
 
 ### vars/RedHat.yml
 
-    configure_sshd_name: sshd
+    __configure_sshd_name: sshd
 
-The name of the ssh service on RedHat based systems.
+The name of the ssh service on RedHat based systems.  This value is used to define configure_sshd_name in the tasks/main.yml file.  This value can be overridden by setting configure_sshd_name in the playbook.
 
 ### vars/Debian.yml
 
-    configure_sshd_name: ssh
+    __configure_sshd_name: ssh
 
-The name of the ssh service on Debian based systems.
+The name of the ssh service on Debian based systems.  This value is used to define configure_sshd_name in the tasks/main.yml file.  This value can be overridden by setting configure_sshd_name in the playbook.
 
 ### vars/main.yml
 

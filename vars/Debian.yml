@@ -1,4 +1,4 @@
 ---
 # Debian vars file for ansible-role-configure_sshd
 
-configure_sshd_name: ssh
+__configure_sshd_name: ssh
