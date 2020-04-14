@@ -59,9 +59,9 @@ What is the maximum number of allowed authentions attempts, also once half this 
 
 Send the contents of the specified file to the user before authentication is atempted.
 
-    configure_sshd_AuthorizedKeysFile: "/etc/ssh/authorized-keys/%u/authorized_keys"
+    configure_sshd_AuthorizedKeysFile: "{{configure_sshd_AuthorizedKeysFile_dir}}/%u/authorized_keys"
 
-This file contains the public keys that can be used for user authentication.
+This file contains the public keys that can be used for user authentication.  This setting uses the value specified by configure_sshd_AuthorizedKeysFile_dir.
 
     configure_sshd_PubkeyAuthentication: "yes"
 
@@ -69,7 +69,7 @@ Is public key authentication is allowed.
 
     configure_sshd_Ciphers: "chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr"
 
-The ciphers allowed for protocol version 2.
+The ciphers allowed when protocol version 2 is being used.
 
     configure_sshd_KexAlgorithms: "curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256"
 
@@ -81,7 +81,7 @@ The available MAC (message authentication code) algorithms.
 
     configure_sshd_DenyUsers: "root"
 
-a space seperated list of username(s) that are not allowed to login to this server.
+A space seperated list of usernames that are not allowed to login to this server.  Even if they below to the group defined by configure_sshd_AllowGroups.
 
     configure_sshd_AllowGroups: "ssh-allowed"
 
@@ -109,7 +109,7 @@ The name of the ssh service on RedHat based systems.
 
     configure_sshd_name: ssh
 
-The name of the ssh service on debian based systems.
+The name of the ssh service on Debian based systems.
 
 ### vars/main.yml
 
@@ -119,7 +119,7 @@ The full path and filename of the sshd configuration file.
 
 ## Dependencies
 
-None
+None.
 
 ## Example Playbook
 
@@ -135,4 +135,4 @@ MIT
 
 ## Author Information
 
-This role was created in 2020 by Graham Lillico
+This role was created in 2020 by Graham Lillico.
