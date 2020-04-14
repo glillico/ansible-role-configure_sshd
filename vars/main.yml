@@ -1,4 +1,4 @@
 ---
 # vars file for ansible-role-configure_sshd
 
-configure_sshd_config_path: /etc/ssh/sshd_config.TEST
+configure_sshd_config_path: /etc/ssh/sshd_config
