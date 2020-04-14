@@ -1,0 +1,69 @@
+---
+# tasks file for ansible-role-configure_sshd
+
+- name: Include OS-specific variables.
+  include_vars: "{{ ansible_os_family }}.yml"
+
+- name: Update SSH configuration to be more secure.
+  lineinfile:
+    dest: "{{ configure_sshd_config_path }}"
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    state: present
+  with_items:
+    - regexp: "^#?PasswordAuthentication"
+      line: "PasswordAuthentication {{ configure_sshd_PasswordAuthentication }}"
+    - regexp: "^#?PermitRootLogin"
+      line: "PermitRootLogin {{ configure_sshd_PermitRootLogin }}"
+    - regexp: "^#?Port"
+      line: "Port {{ configure_sshd_Port }}"
+    - regexp: "^#?Protocol"
+      line: "Protocol {{ configure_sshd_Protocol }}"
+    - regexp: "^#?UseDNS"
+      line: "UseDNS {{ configure_sshd_UseDNS }}"
+    - regexp: "^#?PermitEmptyPasswords"
+      line: "PermitEmptyPasswords {{ configure_sshd_PermitEmptyPasswords }}"
+    - regexp: "^#?ChallengeResponseAuthentication"
+      line: "ChallengeResponseAuthentication {{ configure_sshd_ChallengeResponseAuthentication }}"
+    - regexp: "^#?GSSAPIAuthentication"
+      line: "GSSAPIAuthentication {{ configure_sshd_GSSAPIAuthentication }}"
+    - regexp: "^#?X11Forwarding"
+      line: "X11Forwarding {{ configure_sshd_X11Forwarding }}"
+    - regexp: "^#?MaxAuthTries"
+      line: "MaxAuthTries {{ configure_sshd_MaxAuthTries }}"
+    - regexp: "^#?Banner"
+      line: "Banner {{ configure_sshd_Banner }}"
+    - regexp: "^#?AuthorizedKeysFile"
+      line: "AuthorizedKeysFile {{ configure_sshd_AuthorizedKeysFile }}"
+    - regexp: "^#?PubkeyAuthentication"
+      line: "PubkeyAuthentication {{ configure_sshd_PubkeyAuthentication }}"
+    - regexp: "^#?Ciphers"
+      line: "Ciphers {{ configure_sshd_Ciphers }}"
+    - regexp: "^#?KexAlgorithms"
+      line: "KexAlgorithms {{ configure_sshd_KexAlgorithms }}"
+    - regexp: "^#?MACs"
+      line: "MACs {{ configure_sshd_MACs }}"
+    - regexp: "^#?HostKey /etc/ssh/ssh_host_rsa_key"
+      line: "HostKey /etc/ssh/ssh_host_rsa_key"
+    - regexp: "^#?HostKey /etc/ssh/ssh_host_ed25519_key"
+      line: "HostKey /etc/ssh/ssh_host_ed25519_key"
+    - regexp: "^#?DenyUsers"
+      line: "DenyUsers {{ configure_sshd_DenyUsers }}"
+    - regexp: "^#?AllowGroups"
+      line: "AllowGroups {{ configure_sshd_AllowGroups }}"
+  notify: Restart SSH Service
+
+- name: Ensure the directory specified by AuthorizedKeysFile_dir is present
+  file:
+    path: "{{ configure_sshd_AuthorizedKeysFile_dir }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  when: configure_sshd_AuthorizedKeysFile_create_dir | bool
+
+- name: Ensure the directory specified by configure_sshd_AllowGroups is present
+  group:
+    name: "{{ configure_sshd_AllowGroups }}"
+    state: present
+  when: configure_sshd_AllowGroups_create_group | bool
