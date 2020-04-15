@@ -6,7 +6,7 @@
 
 - name: Define configure_sshd_name.
   set_fact:
-    configure_sshd_name: "{{__configure_sshd_name}}"
+    configure_sshd_name: "{{ __configure_sshd_name }}"
     when: configure_sshd_name is not defined
 
 - name: Update SSH configuration to be more secure.
