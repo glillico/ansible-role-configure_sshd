@@ -5,6 +5,8 @@ This role modifies the SSHD configuration on RedHat and Debian-based linux syste
 **IMPORTANT**:
 The security of the server you are running this on is `YOUR` responsibility. `DO NOT` rely on this role to make your server secure.
 
+I would also like to acknowledge that this ansible role was heavily influenced by Jeff Geerlings [Security](https://galaxy.ansible.com/geerlingguy/security) role.
+
 ## Requirements
 
 The `ssh` package must be installed if you want to manage the ssh configuration with this role.
