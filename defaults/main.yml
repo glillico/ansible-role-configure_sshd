@@ -1,5 +1,5 @@
 ---
-# defaults file for ansible-role-configure_sshd
+# defaults file for configure_sshd
 
 # SSH configuration
 configure_sshd_Port: 22
@@ -17,6 +17,8 @@ configure_sshd_AuthorizedKeysFile: "{{configure_sshd_AuthorizedKeysFile_dir}}/%u
 configure_sshd_PubkeyAuthentication: "yes"
 configure_sshd_Ciphers: "chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr"
 configure_sshd_KexAlgorithms: "curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256"
+# You can add the below KexAlgorithms instead if the server is running OpenSSH 7.3 or later.
+#configure_sshd_KexAlgorithms: "curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256,diffie-hellman-group14-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512"
 configure_sshd_MACs: "hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,umac-128@openssh.com"
 configure_sshd_DenyUsers: "root"
 configure_sshd_AllowGroups: "ssh-allowed"

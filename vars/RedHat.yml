@@ -1,4 +1,4 @@
 ---
-# RedHat vars file for ansible-role-configure_sshd
+# RedHat vars file for configure_sshd
 
 __configure_sshd_name: sshd

@@ -18,7 +18,7 @@ The available variables are listed below:
 ### defaults/main.yml
 
     configure_sshd_Port: 22
-    
+
 The port number that sshd listens on.
 
     configure_sshd_Protocol: 2
@@ -77,6 +77,12 @@ The ciphers allowed when protocol version 2 is being used.
 
 The available KEX (Key Exchange) algorithms.
 
+    diffie-hellman-group14-sha256
+    diffie-hellman-group16-sha512
+    diffie-hellman-group18-sha512
+
+The above KexAlgorithms can also be included if the server is running OpenSSH 7.3 or later.
+
     configure_sshd_MACs: "hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,umac-128@openssh.com"
 
 The available MAC (message authentication code) algorithms.
@@ -98,7 +104,7 @@ The directoy to store a users the authorized keys file in.
 Whether the directory defined by `configure_sshd_AuthorizedKeysFile_dir` should be created or not.
 
     configure_sshd_AllowGroups_create_group: true
-    
+
 Specifies whether the group defined by `configure_sshd_AllowGroups` should be created or not.
 
 ### vars/RedHat.yml
