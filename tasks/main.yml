@@ -9,12 +9,24 @@
     configure_sshd_name: "{{ __configure_sshd_name }}"
     when: configure_sshd_name is not defined
 
+- name: Get openssh version.
+  shell: ssh -V 2>&1 | sed -r 's/.*_([0-9]*\.[0-9]).*/\1/g'
+  register: sshd_version
+  check_mode: false
+  changed_when: false
+
+- name: Set KEX algorithm for openssh 7.3 and above.
+  set_fact:
+    configure_sshd_KexAlgorithms: '{{ configure_sshd_KexAlgorithms_73 }}'
+  when: sshd_version.stdout >= "7.3"
+
 - name: Update SSH configuration to be more secure.
   lineinfile:
     dest: "{{ configure_sshd_config_path }}"
     regexp: "{{ item.regexp }}"
     line: "{{ item.line }}"
     state: present
+    validate: 'sshd -t -f %s'
   with_items:
     - regexp: "^#?PasswordAuthentication"
       line: "PasswordAuthentication {{ configure_sshd_PasswordAuthentication }}"
@@ -22,6 +34,8 @@
       line: "PermitRootLogin {{ configure_sshd_PermitRootLogin }}"
     - regexp: "^#?Port"
       line: "Port {{ configure_sshd_Port }}"
+    - regexp: "^#?ListenAddress"
+      line: "ListenAddress {{ configure_sshd_ListenAddress }}"
     - regexp: "^#?Protocol"
       line: "Protocol {{ configure_sshd_Protocol }}"
     - regexp: "^#?UseDNS"
@@ -67,7 +81,7 @@
     mode: 0755
   when: configure_sshd_AuthorizedKeysFile_create_dir | bool
 
-- name: Ensure the directory specified by configure_sshd_AllowGroups is present
+- name: Ensure the group specified by configure_sshd_AllowGroups is present
   group:
     name: "{{ configure_sshd_AllowGroups }}"
     state: present

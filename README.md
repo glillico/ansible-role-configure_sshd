@@ -21,6 +21,10 @@ The available variables are listed below:
 
 The port number that sshd listens on.
 
+    configure_sshd_ListenAddress: 0.0.0.0
+
+The IPv4 address that the sshd service will listen on. By default this will listen on all configured IPv4 addresses.
+
     configure_sshd_Protocol: 2
 
 The protocol versions sshd supports.
@@ -77,11 +81,9 @@ The ciphers allowed when protocol version 2 is being used.
 
 The available KEX (Key Exchange) algorithms.
 
-    diffie-hellman-group14-sha256
-    diffie-hellman-group16-sha512
-    diffie-hellman-group18-sha512
+    configure_sshd_KexAlgorithms_73: "{{ configure_sshd_KexAlgorithms }},diffie-hellman-group14-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512"
 
-The above KexAlgorithms can also be included if the server is running OpenSSH 7.3 or later.
+The above KexAlgorithms will be used if the server is running OpenSSH 7.3 or later.
 
     configure_sshd_MACs: "hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,umac-128@openssh.com"
 
