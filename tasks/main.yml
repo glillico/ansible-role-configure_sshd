@@ -72,7 +72,7 @@
       line: "AllowGroups {{ configure_sshd_AllowGroups }}"
   notify: Restart SSH Service
 
-- name: Ensure the directory specified by AuthorizedKeysFile_dir is present
+- name: Ensure the directory {{ configure_sshd_AuthorizedKeysFile_dir }} is present
   file:
     path: "{{ configure_sshd_AuthorizedKeysFile_dir }}"
     state: directory
@@ -81,7 +81,7 @@
     mode: 0755
   when: configure_sshd_AuthorizedKeysFile_create_dir | bool
 
-- name: Ensure the group specified by configure_sshd_AllowGroups is present
+- name: Ensure the group {{ configure_sshd_AllowGroups }} is present
   group:
     name: "{{ configure_sshd_AllowGroups }}"
     state: present

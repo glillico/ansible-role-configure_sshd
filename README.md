@@ -1,4 +1,4 @@
-# Ansible Role: Configure SSHD
+# Ansible Role : configure_sshd
 
 This role modifies the SSHD configuration on RedHat and Debian-based linux systems to be more secure.
 
@@ -65,7 +65,7 @@ What is the maximum number of allowed authentions attempts, also once half this 
 
 Send the contents of the specified file to the user before authentication is atempted.
 
-    configure_sshd_AuthorizedKeysFile: "{{configure_sshd_AuthorizedKeysFile_dir}}/%u/authorized_keys"
+    configure_sshd_AuthorizedKeysFile: "{{ configure_sshd_AuthorizedKeysFile_dir }}/authorized_keys"
 
 This file contains the public keys that can be used for user authentication.  This setting uses the value specified by configure_sshd_AuthorizedKeysFile_dir.
 
@@ -97,11 +97,11 @@ A space seperated list of usernames that are not allowed to login to this server
 
 Only users who are members of this group can login to the server.
 
-    configure_sshd_AuthorizedKeysFile_dir: "/etc/ssh/authorized-keys"
+    configure_sshd_AuthorizedKeysFile_dir: ".ssh"
 
 The directoy to store a users the authorized keys file in.
 
-    configure_sshd_AuthorizedKeysFile_create_dir: true
+    configure_sshd_AuthorizedKeysFile_create_dir: false
 
 Whether the directory defined by `configure_sshd_AuthorizedKeysFile_dir` should be created or not.
 
@@ -145,4 +145,4 @@ MIT
 
 ## Author Information
 
-This role was created in 2020 by Graham Lillico.
+This role was created in 2020 by Graham Lillico. (Inspired by [geerlingguy/ansible-role-security](https://github.com/geerlingguy/ansible-role-security))
