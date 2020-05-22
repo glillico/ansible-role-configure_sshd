@@ -1,4 +1,2 @@
 ---
 # vars file for configure_sshd
-
-configure_sshd_config_path: /etc/ssh/sshd_config

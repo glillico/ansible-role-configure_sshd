@@ -1,5 +1,7 @@
 ---
 # handlers file for configure_sshd
 
-- name: Restart SSH Service
-  service: "name={{ configure_sshd_name }} state=restarted"
+- name: Restart ssh service
+  service:
+    name: '{{ configure_sshd_name }}'
+    state: restarted

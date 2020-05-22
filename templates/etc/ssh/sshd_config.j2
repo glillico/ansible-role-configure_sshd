@@ -1,0 +1,65 @@
+# {{ ansible_managed }}
+
+Port {{ configure_sshd_Port }}
+Protocol {{ configure_sshd_Protocol }}
+ListenAddress {{ configure_sshd_ListenAddress }}
+
+HostKey /etc/ssh/ssh_host_rsa_key
+HostKey /etc/ssh/ssh_host_ed25519_key
+
+# Logging
+SyslogFacility {{ configure_sshd_SyslogFacility }}
+LogLevel INFO
+
+# Authentication:
+PermitRootLogin {{ configure_sshd_PermitRootLogin }}
+MaxAuthTries {{ configure_sshd_MaxAuthTries }}
+PubkeyAuthentication {{ configure_sshd_PubkeyAuthentication }}
+
+# The default is to check both .ssh/authorized_keys and .ssh/authorized_keys2
+# but this is overridden so installations will only check .ssh/authorized_keys
+AuthorizedKeysFile {{ configure_sshd_AuthorizedKeysFile }}
+
+# To disable tunneled clear text passwords, change to no here!
+PasswordAuthentication {{ configure_sshd_PasswordAuthentication }}
+PermitEmptyPasswords {{ configure_sshd_PermitEmptyPasswords }}
+
+# Change to no to disable s/key passwords
+ChallengeResponseAuthentication {{ configure_sshd_ChallengeResponseAuthentication }}
+
+# GSSAPI options
+GSSAPIAuthentication {{ configure_sshd_GSSAPIAuthentication }}
+GSSAPICleanupCredentials no
+
+# Set this to 'yes' to enable PAM authentication, account processing,
+# and session processing. If this is enabled, PAM authentication will
+# be allowed through the ChallengeResponseAuthentication and
+# PasswordAuthentication.  Depending on your PAM configuration,
+# PAM authentication via ChallengeResponseAuthentication may bypass
+# the setting of "PermitRootLogin without-password".
+# If you just want the PAM account and session checks to run without
+# PAM authentication, then enable this but set PasswordAuthentication
+# and ChallengeResponseAuthentication to 'no'.
+# WARNING: 'UsePAM no' is not supported in Red Hat Enterprise Linux and may cause several
+# problems.
+UsePAM yes
+
+X11Forwarding {{ configure_sshd_X11Forwarding }}
+PrintMotd yes
+UseDNS {{ configure_sshd_UseDNS }}
+
+# no default banner path
+Banner {{ configure_sshd_Banner }}
+
+# Accept locale-related environment variables
+AcceptEnv LANG LC_*
+
+# override default of no subsystems
+Subsystem	sftp	{{ configure_sshd_sftpserver }}/sftp-server
+
+Ciphers {{ configure_sshd_Ciphers }}
+KexAlgorithms {{ configure_sshd_KexAlgorithms }}
+MACs {{ configure_sshd_MACs }}
+
+DenyUsers {{ configure_sshd_DenyUsers }}
+AllowGroups {{ configure_sshd_AllowGroups }}

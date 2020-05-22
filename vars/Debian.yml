@@ -2,3 +2,5 @@
 # Debian vars file for configure_sshd
 
 __configure_sshd_name: ssh
+__configure_sshd_SyslogFacility: AUTH
+__configure_sshd_sftpserver: /usr/lib/openssh

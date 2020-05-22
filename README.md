@@ -1,6 +1,6 @@
 # Ansible Role : configure_sshd
 
-This role modifies the SSHD configuration on RedHat and Debian-based linux systems to be more secure.
+This role modifies the SSHD configuration on RedHat and Debian-based linux systems to be more secure.  A backup of the sshd_config file is taken prior to any change being made.
 
 **IMPORTANT**:
 The security of the server you are running this on is `YOUR` responsibility. `DO NOT` rely on this role to make your server secure.
@@ -12,8 +12,6 @@ I would also like to acknowledge that this ansible role was heavily influenced b
 The `ssh` package must be installed if you want to manage the ssh configuration with this role.
 
 ## Role Variables
-
-The available variables are listed below:
 
 ### defaults/main.yml
 
@@ -65,7 +63,7 @@ What is the maximum number of allowed authentions attempts, also once half this 
 
 Send the contents of the specified file to the user before authentication is atempted.
 
-    configure_sshd_AuthorizedKeysFile: "{{ configure_sshd_AuthorizedKeysFile_dir }}/authorized_keys"
+    configure_sshd_AuthorizedKeysFile: "{{ configure_sshd_AuthorizedKeysFile_dir }}authorized_keys"
 
 This file contains the public keys that can be used for user authentication.  This setting uses the value specified by configure_sshd_AuthorizedKeysFile_dir.
 
@@ -97,7 +95,7 @@ A space seperated list of usernames that are not allowed to login to this server
 
 Only users who are members of this group can login to the server.
 
-    configure_sshd_AuthorizedKeysFile_dir: ".ssh"
+    configure_sshd_AuthorizedKeysFile_dir: ".ssh/"
 
 The directoy to store a users the authorized keys file in.
 
@@ -115,17 +113,27 @@ Specifies whether the group defined by `configure_sshd_AllowGroups` should be cr
 
 The name of the ssh service on RedHat based systems.  This value is used to define configure_sshd_name in the tasks/main.yml file.  This value can be overridden by setting configure_sshd_name in the playbook.
 
+    __configure_sshd_SyslogFacility: AUTHPRIV
+
+Sets the rsyslog facility on RedHat based systems.  Buy Default this will be AUTHPRIV.INFO.  This value can be overridden by setting configure_sshd_SyslogFacility in the playbook.
+
+    __configure_sshd_sftpserver: /usr/libexec/openssh
+
+Sets the path of the sftp-server used by the sftp subsystem.  This value can be overridden by setting onfigure_sshd_sftpserver in the playbook.
+
 ### vars/Debian.yml
 
     __configure_sshd_name: ssh
 
 The name of the ssh service on Debian based systems.  This value is used to define configure_sshd_name in the tasks/main.yml file.  This value can be overridden by setting configure_sshd_name in the playbook.
 
-### vars/main.yml
+    __configure_sshd_SyslogFacility: AUTH
 
-    configure_sshd_config_path: /etc/ssh/sshd_config
+Sets the rsyslog facility on Debian based systems. Buy Default this will be AUTH.INFO.  This value can be overridden by setting configure_sshd_SyslogFacility in the playbook.
 
-The full path and filename of the sshd configuration file.
+    __configure_sshd_sftpserver: /usr/lib/openssh
+
+Sets the path of the sftp-server used by the sftp subsystem.  This value can be overridden by setting onfigure_sshd_sftpserver in the playbook.
 
 ## Dependencies
 
