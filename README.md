@@ -31,9 +31,9 @@ The `ssh` package must be installed if you want to manage the ssh configuration 
 |configure_sshd_Banner|Send the contents of the specified file to the user before authentication is atempted.|
 |configure_sshd_AuthorizedKeysFile|This file contains the public keys that can be used for user authentication.  This setting uses the value specified by configure_sshd_AuthorizedKeysFile_dir.|
 |configure_sshd_PubkeyAuthentication|Is public key authentication is allowed.|
-|configure_sshd_Ciphers|The ciphers allowed when protocol version 2 is being used.<br><br>chacha20-poly1305@openssh.com<br>aes256-gcm@openssh.com<br>aes128-gcm@openssh.com<br>aes256-ctr<br>aes192-ctr<br>aes128-ctr|
-|configure_sshd_KexAlgorithms|The available KEX (Key Exchange) algorithms.<br><br>curve25519-sha256@libssh.org<br>diffie-hellman-group-exchange-sha256|
-|configure_sshd_MACs|The available MAC (message authentication code) algorithms.<br><br>hmac-sha2-512-etm@openssh.com<br>hmac-sha2-256-etm@openssh.com<br>umac-128-etm@openssh.com<br>hmac-sha2-512<br>hmac-sha2-256<br>umac-128@openssh.com|
+|configure_sshd_Ciphers|The ciphers allowed when protocol version 2 is being used.<br><br>chacha20-poly1305@<span>openssh.com</span><br>aes256-gcm@<span>openssh.com</span><br>aes128-gcm@<span>openssh.com</span><br>aes256-ctr<br>aes192-ctr<br>aes128-ctr|
+|configure_sshd_KexAlgorithms|The available KEX (Key Exchange) algorithms.<br><br>curve25519-sha256@<span>libssh.org</span><br>diffie-hellman-group-exchange-sha256|
+|configure_sshd_MACs|The available MAC (message authentication code) algorithms.<br><br>hmac-sha2-512-etm@<span>openssh.com</span><br>hmac-sha2-256-etm@<span>openssh.com</span><br>umac-128-etm@<span>openssh.com</span><br>hmac-sha2-512<br>hmac-sha2-256<br>umac-128@<span>openssh.com</span>|
 |configure_sshd_DenyUsers|A space seperated list of usernames that are not allowed to login to this server.  Even if they belong to the group defined by configure_sshd_AllowGroups.|
 |configure_sshd_AllowGroups|Only users who are members of this group can login to the server.|
 |configure_sshd_AuthorizedKeysFile_dir|The directoy to store a users the authorized keys file in.|
