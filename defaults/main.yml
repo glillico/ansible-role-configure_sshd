@@ -14,21 +14,35 @@ configure_sshd_GSSAPIAuthentication: "no"
 configure_sshd_X11Forwarding: "no"
 configure_sshd_MaxAuthTries: "3"
 configure_sshd_Banner: "/etc/issue"
-configure_sshd_AuthorizedKeysFile: "{{ configure_sshd_AuthorizedKeysFile_dir }}authorized_keys"
+configure_sshd_AuthorizedKeysFile: "{{ configure_sshd_AuthorizedKeysFile_dir }}/authorized_keys"
 configure_sshd_PubkeyAuthentication: "yes"
-configure_sshd_Ciphers: "chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr"
-configure_sshd_KexAlgorithms: "curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256"
-configure_sshd_MACs: "hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,umac-128@openssh.com"
+configure_sshd_Ciphers: "chacha20-poly1305@openssh.com,\
+                        aes256-gcm@openssh.com,\
+                        aes128-gcm@openssh.com,\
+                        aes256-ctr,\
+                        aes192-ctr,\
+                        aes128-ctr"
+configure_sshd_KexAlgorithms: "curve25519-sha256@libssh.org,\
+                              diffie-hellman-group-exchange-sha256"
+configure_sshd_MACs: "hmac-sha2-512-etm@openssh.com,\
+                      hmac-sha2-256-etm@openssh.com,\
+                      umac-128-etm@openssh.com,\
+                      hmac-sha2-512,\
+                      hmac-sha2-256,\
+                      umac-128@openssh.com"
 configure_sshd_DenyUsers: "root"
 configure_sshd_AllowGroups: "ssh-allowed"
 
 # Custom configuraton
-configure_sshd_AuthorizedKeysFile_dir: ".ssh/"
+configure_sshd_AuthorizedKeysFile_dir: ".ssh"
 configure_sshd_AuthorizedKeysFile_create_dir: false
 configure_sshd_AllowGroups_create_group: true
 
 # The below KexAlgorithms will be used instead if the OpenSSH 7.3 or later is being used.
-configure_sshd_KexAlgorithms_73: "{{ configure_sshd_KexAlgorithms }},diffie-hellman-group14-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512"
+configure_sshd_KexAlgorithms_73: "{{ configure_sshd_KexAlgorithms }},\
+                                  diffie-hellman-group14-sha256,\
+                                  diffie-hellman-group16-sha512,\
+                                  diffie-hellman-group18-sha512"
 
 # Anti-Lockout user
 configure_sshd_automation_user: "vagrant"
