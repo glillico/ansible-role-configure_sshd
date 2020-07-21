@@ -1,6 +1,30 @@
 ---
 - name: Converge
   hosts: all
+  become: true
+
+  pre_tasks:
+    - name: Include OS-specific variables.
+      include_vars: "vars/{{ ansible_os_family }}.yml"
+
+    - name: Update apt cache.
+      package:
+        update_cache: true
+        cache_valid_time: 600
+      when: ansible_os_family == 'Debian'
+
+    - name: Install package dependencies.
+      package:
+        name:
+          - '{{ item }}'
+        state: present
+      with_items: "{{ cssh_pkgs }}"
+
+    - name: Ensure ssh server has been started.
+      service:
+        name: '{{ cssh_name }}'
+        state: started
+
   tasks:
     - name: "Include ansible-role-configure_sshd"
       include_role:

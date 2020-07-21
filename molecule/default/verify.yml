@@ -3,7 +3,35 @@
 
 - name: Verify
   hosts: all
+
   tasks:
-  - name: Example assertion
+  - name: Include OS-specific variables.
+    include_vars: "vars/{{ ansible_os_family }}.yml"
+
+  - name: Check the package status.
+    package:
+      name: '{{ item }}'
+      state: present
+    check_mode: yes
+    register: pkg_status
+    with_items: "{{ cssh_pkgs }}"
+
+  - name: Test that the packages are installed.
     assert:
-      that: true
+      that:
+        - not pkg_status.changed
+
+  - name: Retrieve the file information for '/etc/ssh/sshd_config'.
+    stat:
+      path: '/etc/ssh/sshd_config'
+    register: remote_file
+
+  - name: Test that the '/etc/ssh/sshd_config' file was created correctly.
+    assert:
+      that:
+        - remote_file.stat.exists
+        - remote_file.stat.isreg
+        - remote_file.stat.path == '/etc/ssh/sshd_config'
+        - remote_file.stat.mode == '0600'
+        - remote_file.stat.pw_name == 'root'
+        - remote_file.stat.gr_name == 'root'

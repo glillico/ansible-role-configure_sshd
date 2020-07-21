@@ -1,0 +1,7 @@
+---
+# Debian vars file for configure_sshd
+
+cssh_name: ssh
+cssh_pkgs:
+  - openssh-server
+  - openssh-client
