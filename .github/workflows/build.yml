@@ -1,0 +1,44 @@
+---
+name: build
+'on':
+  pull_request:
+  push:
+    branches:
+      - master
+
+jobs:
+  test:
+    name: Molecule
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        distro:
+          - amazonlinux2
+          - centos7
+          - centos8
+          - debian9
+          - debian10
+          - ubuntu1804
+          - ubuntu2004
+        tag:
+          - latest
+
+    steps:
+      - name: Check out git repository.
+        uses: actions/checkout@v2
+
+      - name: Setup python 3.
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install package dependencies.
+        run: pip3 install docker ansible-lint yamllint molecule
+
+      - name: Perform molecule tests.
+        run: molecule test
+        env:
+          PY_COLORS: '1'
+          ANSIBLE_FORCE_COLOR: '1'
+          MOLECULE_DISTRO: ${{ matrix.distro }}
+          MOLECULE_TAG: ${{ matrix.tag }}
