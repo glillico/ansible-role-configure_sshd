@@ -1,5 +1,7 @@
 # Ansible Role : configure_sshd
 
+[![Build Status](https://github.com/glillico/ansible-role-configure_sshd/workflows/build/badge.svg)](https://github.com/glillico/ansible-role-configure_sshd/actions?query=workflow%3Abuild)
+
 This role modifies the SSHD configuration on RedHat and Debian-based linux systems to be more secure.  A backup of the sshd_config file is taken prior to any change being made.
 
 **IMPORTANT**:
