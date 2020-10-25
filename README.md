@@ -1,6 +1,6 @@
 # Ansible Role : configure_sshd
 
-[![Ansible Molecule](https://github.com/glillico/ansible-role-configure_sshd/workflows/Ansible%20Molecule/badge.svg)](https://github.com/glillico/ansible-role-configure_sshd/actions?query=workflow%3AAnsible%20Molecule)
+[![molecule](https://github.com/glillico/ansible-role-configure_sshd/workflows/molecule/badge.svg)](https://github.com/glillico/ansible-role-configure_sshd/actions?query=workflow%3Amolecule)
 
 This role modifies the SSHD configuration on RedHat and Debian-based linux systems to be more secure.  A backup of the sshd_config file is taken prior to any change being made.
 
