@@ -41,6 +41,7 @@ The `ssh` package must be installed if you want to manage the ssh configuration 
 |configure_sshd_AuthorizedKeysFile_dir|The directoy to store a users the authorized keys file in.|
 |configure_sshd_AuthorizedKeysFile_create_dir|Whether the directory defined by `configure_sshd_AuthorizedKeysFile_dir` should be created or not.|
 |configure_sshd_AllowGroups_create_group|Specifies whether the group defined by `configure_sshd_AllowGroups` should be created or not.|
+|configure_sshd_AllowGroups_user|Specifies the user who should be made a member of the group defined by `configure_sshd_AllowGroups`.|
 
 The below KexAlgorithms will be used in addition to the ones defined above if the server is running OpenSSH 7.3 or later.
 

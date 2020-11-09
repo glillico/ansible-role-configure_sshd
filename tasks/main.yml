@@ -62,7 +62,8 @@
     state: present
   when: configure_sshd_AllowGroups_create_group | bool
 
-- name: Set automation user to be a member of {{ configure_sshd_AllowGroups }}.
+- name: Set {{ configure_sshd_AllowGroups_user }} user to be a member of {{ configure_sshd_AllowGroups }} group.
   user:
-    name: '{{ configure_sshd_automation_user }}'
+    name: '{{ configure_sshd_AllowGroups_user }}'
     groups: '{{ configure_sshd_AllowGroups }}'
+  when: configure_sshd_AllowGroups_create_group | bool
