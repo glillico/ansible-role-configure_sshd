@@ -62,4 +62,6 @@ KexAlgorithms {{ configure_sshd_KexAlgorithms }}
 MACs {{ configure_sshd_MACs }}
 
 DenyUsers {{ configure_sshd_DenyUsers }}
+{% if configure_sshd_AllowGroups_create_group %}
 AllowGroups {{ configure_sshd_AllowGroups }}
+{% endif %}
