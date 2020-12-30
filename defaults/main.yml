@@ -45,4 +45,4 @@ configure_sshd_KexAlgorithms_73: "{{ configure_sshd_KexAlgorithms }},\
                                   diffie-hellman-group18-sha512"
 
 # Anti-Lockout user
-configure_sshd_AllowGroups_user: "vagrant"
+configure_sshd_AllowGroups_user: "sshuser"
