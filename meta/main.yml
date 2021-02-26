@@ -1,5 +1,6 @@
 galaxy_info:
-  author: Graham Lillico
+  role_name: configure_sshd
+  author: glillico
   description: Configures the openssh daemon with some basic hardening.
   license: license (MIT)
   min_ansible_version: 2.4
