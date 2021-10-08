@@ -39,7 +39,7 @@ configure_sshd_authorizedkeysfile_create_dir: false
 configure_sshd_allowgroups_create_group: true
 
 # The below KexAlgorithms will be used instead if the OpenSSH 7.3 or later is being used.
-configure_sshd_kexalgorithms_73: "{{ configure_sshd_KexAlgorithms }},\
+configure_sshd_kexalgorithms_73: "{{ configure_sshd_kexalgorithms }},\
                                   diffie-hellman-group14-sha256,\
                                   diffie-hellman-group16-sha512,\
                                   diffie-hellman-group18-sha512"
