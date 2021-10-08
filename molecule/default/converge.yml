@@ -25,7 +25,5 @@
         name: '{{ cssh_name }}'
         state: started
 
-  tasks:
-    - name: "Include ansible-role-configure_sshd"
-      include_role:
-        name: "ansible-role-configure_sshd"
+  roles:
+    - role: glillico.configure_sshd
