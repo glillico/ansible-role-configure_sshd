@@ -2,47 +2,47 @@
 # defaults file for configure_sshd
 
 # SSH configuration
-configure_sshd_Port: 22
-configure_sshd_ListenAddress: 0.0.0.0
-configure_sshd_Protocol: 2
-configure_sshd_PasswordAuthentication: "no"
-configure_sshd_PermitRootLogin: "no"
-configure_sshd_UseDNS: "no"
-configure_sshd_PermitEmptyPasswords: "no"
-configure_sshd_ChallengeResponseAuthentication: "no"
-configure_sshd_GSSAPIAuthentication: "no"
-configure_sshd_X11Forwarding: "no"
-configure_sshd_MaxAuthTries: "3"
-configure_sshd_Banner: "/etc/issue"
-configure_sshd_AuthorizedKeysFile: "{{ configure_sshd_AuthorizedKeysFile_dir }}/authorized_keys"
-configure_sshd_PubkeyAuthentication: "yes"
-configure_sshd_Ciphers: "chacha20-poly1305@openssh.com,\
+configure_sshd_port: 22
+configure_sshd_listenaddress: 0.0.0.0
+configure_sshd_protocol: 2
+configure_sshd_passwordauthentication: "no"
+configure_sshd_permitrootlogin: "no"
+configure_sshd_usedns: "no"
+configure_sshd_permitemptypasswords: "no"
+configure_sshd_challengeresponseauthentication: "no"
+configure_sshd_gssapiauthentication: "no"
+configure_sshd_x11forwarding: "no"
+configure_sshd_maxauthtries: "3"
+configure_sshd_banner: "/etc/issue"
+configure_sshd_authorizedkeysfile: "{{ configure_sshd_authorizedkeysfile_dir }}/authorized_keys"
+configure_sshd_pubkeyauthentication: "yes"
+configure_sshd_ciphers: "chacha20-poly1305@openssh.com,\
                         aes256-gcm@openssh.com,\
                         aes128-gcm@openssh.com,\
                         aes256-ctr,\
                         aes192-ctr,\
                         aes128-ctr"
-configure_sshd_KexAlgorithms: "curve25519-sha256@libssh.org,\
+configure_sshd_kexalgorithms: "curve25519-sha256@libssh.org,\
                               diffie-hellman-group-exchange-sha256"
-configure_sshd_MACs: "hmac-sha2-512-etm@openssh.com,\
+configure_sshd_macs: "hmac-sha2-512-etm@openssh.com,\
                       hmac-sha2-256-etm@openssh.com,\
                       umac-128-etm@openssh.com,\
                       hmac-sha2-512,\
                       hmac-sha2-256,\
                       umac-128@openssh.com"
-configure_sshd_DenyUsers: "root"
-configure_sshd_AllowGroups: "ssh-allowed"
+configure_sshd_denyusers: "root"
+configure_sshd_allowgroups: "ssh-allowed"
 
 # Custom configuraton
-configure_sshd_AuthorizedKeysFile_dir: ".ssh"
-configure_sshd_AuthorizedKeysFile_create_dir: false
-configure_sshd_AllowGroups_create_group: true
+configure_sshd_authorizedkeysfile_dir: ".ssh"
+configure_sshd_authorizedkeysfile_create_dir: false
+configure_sshd_allowgroups_create_group: true
 
 # The below KexAlgorithms will be used instead if the OpenSSH 7.3 or later is being used.
-configure_sshd_KexAlgorithms_73: "{{ configure_sshd_KexAlgorithms }},\
+configure_sshd_kexalgorithms_73: "{{ configure_sshd_kexalgorithms }},\
                                   diffie-hellman-group14-sha256,\
                                   diffie-hellman-group16-sha512,\
                                   diffie-hellman-group18-sha512"
 
 # Anti-Lockout user
-configure_sshd_AllowGroups_user: "sshuser"
+configure_sshd_allowgroups_user: "sshuser"

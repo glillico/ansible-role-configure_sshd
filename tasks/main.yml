@@ -9,10 +9,10 @@
     configure_sshd_name: "{{ __configure_sshd_name }}"
     when: configure_sshd_name is not defined
 
-- name: Define configure_sshd_SyslogFacility.
+- name: Define configure_sshd_syslogfacility.
   set_fact:
-    configure_sshd_SyslogFacility: "{{ __configure_sshd_SyslogFacility }}"
-    when: configure_sshd_SyslogFacility is not defined
+    configure_sshd_syslogfacility: "{{ __configure_sshd_syslogfacility }}"
+    when: configure_sshd_syslogfacility is not defined
 
 - name: Define configure_sshd_sftpserver.
   set_fact:
@@ -31,7 +31,7 @@
 
 - name: Set KEX algorithm for openssh 7.3 and above.
   set_fact:
-    configure_sshd_KexAlgorithms: '{{ configure_sshd_KexAlgorithms_73 }}'
+    configure_sshd_kexalgorithms: '{{ configure_sshd_kexalgorithms_73 }}'
   when: sshd_version.stdout >= "7.3"
 
 - name: Update the sshd configuration.
@@ -47,24 +47,24 @@
     - sshd_config
   notify: Restart ssh service
 
-- name: Ensure the directory {{ configure_sshd_AuthorizedKeysFile_dir }} is present.
+- name: Ensure the directory {{ configure_sshd_authorizedkeysfile_dir }} is present.
   file:
-    path: "{{ configure_sshd_AuthorizedKeysFile_dir }}"
+    path: "{{ configure_sshd_authorizedkeysfile_dir }}"
     state: directory
     owner: root
     group: root
     mode: 0755
-  when: configure_sshd_AuthorizedKeysFile_create_dir | bool
+  when: configure_sshd_authorizedkeysfile_create_dir | bool
 
-- name: Ensure the group {{ configure_sshd_AllowGroups }} is present.
+- name: Ensure the group {{ configure_sshd_allowgroups }} is present.
   group:
-    name: "{{ configure_sshd_AllowGroups }}"
+    name: "{{ configure_sshd_allowgroups }}"
     state: present
-  when: configure_sshd_AllowGroups_create_group | bool
+  when: configure_sshd_allowgroups_create_group | bool
 
-- name: Set {{ configure_sshd_AllowGroups_user }} user to be a member of {{ configure_sshd_AllowGroups }} group.
+- name: Set {{ configure_sshd_allowgroups_user }} user to be a member of {{ configure_sshd_allowgroups }} group.
   user:
-    name: '{{ configure_sshd_AllowGroups_user }}'
-    groups: '{{ configure_sshd_AllowGroups }}'
+    name: '{{ configure_sshd_allowgroups_user }}'
+    groups: '{{ configure_sshd_allowgroups }}'
     append: true
-  when: configure_sshd_AllowGroups_create_group | bool
+  when: configure_sshd_allowgroups_create_group | bool
