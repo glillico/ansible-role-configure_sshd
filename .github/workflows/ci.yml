@@ -9,6 +9,10 @@ on:
   schedule:
     - cron: '50 2 * * 6'
 
+defaults:
+  run:
+    working-directory: 'glillico.configure_sshd'
+
 jobs:
   lint:
     name: Lint
@@ -16,6 +20,8 @@ jobs:
     steps:
       - name: Check out git repository.
         uses: actions/checkout@v2
+        with:
+          path: 'glillico.configure_sshd'
 
       - name: Setup python 3.
         uses: actions/setup-python@v2
@@ -40,9 +46,10 @@ jobs:
         distro:
           - amazonlinux2
           - centos7
-          - centos8
+          - rockylinux8
           - debian9
           - debian10
+          - debian11
           - ubuntu1804
           - ubuntu2004
         tag:
@@ -50,6 +57,8 @@ jobs:
     steps:
       - name: Check out git repository.
         uses: actions/checkout@v2
+        with:
+          path: 'glillico.configure_sshd'
 
       - name: Setup python 3.
         uses: actions/setup-python@v2
