@@ -1,34 +1,34 @@
 {{ ansible_managed | comment }}
 
-Port {{ configure_sshd_Port }}
-Protocol {{ configure_sshd_Protocol }}
-ListenAddress {{ configure_sshd_ListenAddress }}
+Port {{ configure_sshd_port }}
+Protocol {{ configure_sshd_protocol }}
+ListenAddress {{ configure_sshd_listenaddress }}
 
 HostKey /etc/ssh/ssh_host_rsa_key
 HostKey /etc/ssh/ssh_host_ed25519_key
 
 # Logging
-SyslogFacility {{ configure_sshd_SyslogFacility }}
+SyslogFacility {{ configure_sshd_syslogfacility }}
 LogLevel INFO
 
 # Authentication:
-PermitRootLogin {{ configure_sshd_PermitRootLogin }}
-MaxAuthTries {{ configure_sshd_MaxAuthTries }}
-PubkeyAuthentication {{ configure_sshd_PubkeyAuthentication }}
+PermitRootLogin {{ configure_sshd_permitrootlogin }}
+MaxAuthTries {{ configure_sshd_maxauthtries }}
+PubkeyAuthentication {{ configure_sshd_pubkeyauthentication }}
 
 # The default is to check both .ssh/authorized_keys and .ssh/authorized_keys2
 # but this is overridden so installations will only check .ssh/authorized_keys
-AuthorizedKeysFile {{ configure_sshd_AuthorizedKeysFile }}
+AuthorizedKeysFile {{ configure_sshd_authorizedkeysfile }}
 
 # To disable tunneled clear text passwords, change to no here!
-PasswordAuthentication {{ configure_sshd_PasswordAuthentication }}
-PermitEmptyPasswords {{ configure_sshd_PermitEmptyPasswords }}
+PasswordAuthentication {{ configure_sshd_passwordauthentication }}
+PermitEmptyPasswords {{ configure_sshd_permitemptypasswords }}
 
 # Change to no to disable s/key passwords
-ChallengeResponseAuthentication {{ configure_sshd_ChallengeResponseAuthentication }}
+ChallengeResponseAuthentication {{ configure_sshd_challengeresponseauthentication }}
 
 # GSSAPI options
-GSSAPIAuthentication {{ configure_sshd_GSSAPIAuthentication }}
+GSSAPIAuthentication {{ configure_sshd_gssapiauthentication }}
 GSSAPICleanupCredentials no
 
 # Set this to 'yes' to enable PAM authentication, account processing,
@@ -44,12 +44,12 @@ GSSAPICleanupCredentials no
 # problems.
 UsePAM yes
 
-X11Forwarding {{ configure_sshd_X11Forwarding }}
+X11Forwarding {{ configure_sshd_x11forwarding }}
 PrintMotd yes
-UseDNS {{ configure_sshd_UseDNS }}
+UseDNS {{ configure_sshd_usedns }}
 
 # no default banner path
-Banner {{ configure_sshd_Banner }}
+Banner {{ configure_sshd_banner }}
 
 # Accept locale-related environment variables
 AcceptEnv LANG LC_*
@@ -57,11 +57,11 @@ AcceptEnv LANG LC_*
 # override default of no subsystems
 Subsystem	sftp	{{ configure_sshd_sftpserver }}/sftp-server
 
-Ciphers {{ configure_sshd_Ciphers }}
-KexAlgorithms {{ configure_sshd_KexAlgorithms }}
-MACs {{ configure_sshd_MACs }}
+Ciphers {{ configure_sshd_ciphers }}
+KexAlgorithms {{ configure_sshd_kexalgorithms }}
+MACs {{ configure_sshd_macs }}
 
-DenyUsers {{ configure_sshd_DenyUsers }}
-{% if configure_sshd_AllowGroups_create_group %}
-AllowGroups {{ configure_sshd_AllowGroups }}
+DenyUsers {{ configure_sshd_denyusers }}
+{% if configure_sshd_allowgroups_create_group %}
+AllowGroups {{ configure_sshd_allowgroups }}
 {% endif %}

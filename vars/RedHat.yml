@@ -2,5 +2,5 @@
 # RedHat vars file for configure_sshd
 
 __configure_sshd_name: sshd
-__configure_sshd_SyslogFacility: AUTHPRIV
+__configure_sshd_syslogfacility: AUTHPRIV
 __configure_sshd_sftpserver: /usr/libexec/openssh
