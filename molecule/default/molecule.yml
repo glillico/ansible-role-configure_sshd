@@ -1,4 +1,5 @@
 ---
+role_name_check: 1
 dependency:
   name: galaxy
 driver:
@@ -13,25 +14,3 @@ platforms:
     pre_build_image: true
 provisioner:
   name: ansible
-verifier:
-  name: ansible
-# lint: |
-#   set -e
-#   yamllint .
-#   ansible-lint
-scenario:
-  test_sequence:
-    - lint
-    - cleanup
-    - destroy
-    - dependency
-    - syntax
-    - create
-    - prepare
-    - converge
-    - idempotence
-    - check
-    - side_effect
-    - verify
-    - cleanup
-    - destroy
