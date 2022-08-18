@@ -32,6 +32,7 @@ configure_sshd_macs: "hmac-sha2-512-etm@openssh.com,\
                       umac-128@openssh.com"
 configure_sshd_denyusers: "root"
 configure_sshd_allowgroups: "ssh-allowed"
+configure_sshd_allowgroups_gid: "500"
 
 # Custom configuraton
 configure_sshd_authorizedkeysfile_dir: ".ssh"

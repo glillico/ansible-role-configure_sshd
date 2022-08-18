@@ -59,6 +59,7 @@
 - name: Ensure the group {{ configure_sshd_allowgroups }} is present.
   group:
     name: "{{ configure_sshd_allowgroups }}"
+    gid: "{{ configure_sshd_allowgroups_gid }}"
     state: present
   when: configure_sshd_allowgroups_create_group | bool
 
