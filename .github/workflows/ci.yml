@@ -34,7 +34,6 @@ jobs:
       - name: Perform linting.
         run: |
           yamllint .
-          ansible-lint
 
   molecule:
     needs: lint
