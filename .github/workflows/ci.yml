@@ -44,14 +44,13 @@ jobs:
       fail-fast: false
       matrix:
         distro:
-          - amazonlinux2
           - centos7
-          - rockylinux8
-          - debian9
           - debian10
           - debian11
-          - ubuntu1804
+          - rockylinux8
+          - rockylinux9
           - ubuntu2004
+          - ubuntu2204
         tag:
           - latest
     steps:
