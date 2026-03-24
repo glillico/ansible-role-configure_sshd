@@ -21,17 +21,17 @@
       that:
         - not pkg_status.changed
 
-  - name: Retrieve the file information for '/etc/ssh/sshd_config'.
+  - name: Retrieve the file information for '/etc/ssh/sshd_config.d/00-sshd_config_extras.conf'.
     stat:
-      path: '/etc/ssh/sshd_config'
+      path: '/etc/ssh/sshd_config.d/00-sshd_config_extras.conf'
     register: remote_file
 
-  - name: Test that the '/etc/ssh/sshd_config' file was created correctly.
+  - name: Test that the '/etc/ssh/sshd_config.d/00-sshd_config_extras.conf' file was created correctly.
     assert:
       that:
         - remote_file.stat.exists
         - remote_file.stat.isreg
-        - remote_file.stat.path == '/etc/ssh/sshd_config'
+        - remote_file.stat.path == '/etc/ssh/sshd_config.d/00-sshd_config_extras.conf'
         - remote_file.stat.mode == '0600'
         - remote_file.stat.pw_name == 'root'
         - remote_file.stat.gr_name == 'root'

@@ -19,6 +19,7 @@ The `ssh` package must be installed if you want to manage the ssh configuration 
 
 |Variable|Description|
 |---|:---|
+|configure_sshd_config_file|Specifies the location and name of the main sshd configuration file.|
 |configure_sshd_port|The port number that sshd listens on.|
 |configure_sshd_listenaddress|The IPv4 address that the sshd service will listen on. By default this will listen on all configured IPv4 addresses.|
 |configure_sshd_protocol|The protocol versions sshd supports.|
@@ -31,6 +32,7 @@ The `ssh` package must be installed if you want to manage the ssh configuration 
 |configure_sshd_x11forwarding|Is X11 forwarding is permitted.|
 |configure_sshd_maxauthtries|What is the maximum number of allowed authentions attempts, also once half this number is reached then further failures are logged.|
 |configure_sshd_banner|Send the contents of the specified file to the user before authentication is atempted.|
+|configure_sshd_printmotd|Controls if the MOTD is displayed on login.|
 |configure_sshd_authorizedkeysfile|This file contains the public keys that can be used for user authentication.  This setting uses the value specified by configure_sshd_authorizedkeysfile_dir.|
 |configure_sshd_pubkeyauthentication|Is public key authentication is allowed.|
 |configure_sshd_ciphers|The ciphers allowed when protocol version 2 is being used.<br><br>chacha20-poly1305@<span>openssh.com</span><br>aes256-gcm@<span>openssh.com</span><br>aes128-gcm@<span>openssh.com</span><br>aes256-ctr<br>aes192-ctr<br>aes128-ctr|
@@ -41,6 +43,7 @@ The `ssh` package must be installed if you want to manage the ssh configuration 
 |configure_sshd_authorizedkeysfile_dir|The directoy to store a users the authorized keys file in.|
 |configure_sshd_authorizedkeysfile_create_dir|Whether the directory defined by `configure_sshd_authorizedkeysfile_dir` should be created or not.|
 |configure_sshd_allowgroups_create_group|Specifies whether the group defined by `configure_sshd_allowgroups` should be created or not.|
+|configure_sshd_setup_sftp|Specifies whether sftp is defined in the configuration file or not.|
 |configure_sshd_allowgroups_user|Specifies the user who should be made a member of the group defined by `configure_sshd_allowgroups`.|
 
 The below KexAlgorithms will be used in addition to the ones defined above if the server is running OpenSSH 7.3 or later.
