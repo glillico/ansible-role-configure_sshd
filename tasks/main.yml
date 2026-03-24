@@ -36,15 +36,15 @@
 
 - name: Update the sshd configuration.
   template:
-    src: "etc/ssh/{{ item }}.j2"
-    dest: "/etc/ssh/{{ item }}"
+    src: "etc/ssh/sshd_config.d/{{ item }}.j2"
+    dest: "/etc/ssh/sshd_config.d/00-{{ item }}.conf"
     owner: root
     group: root
     mode: 0600
     validate: 'sshd -t -f %s'
-    backup: true
+    backup: false
   with_items:
-    - sshd_config
+    - sshd_config_extras
   notify: Restart ssh service
 
 - name: Ensure the directory {{ configure_sshd_authorizedkeysfile_dir }} is present.

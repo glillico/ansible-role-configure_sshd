@@ -45,7 +45,7 @@ GSSAPICleanupCredentials no
 UsePAM yes
 
 X11Forwarding {{ configure_sshd_x11forwarding }}
-PrintMotd yes
+PrintMotd {{ configure_sshd_printmotd }}
 UseDNS {{ configure_sshd_usedns }}
 
 # no default banner path
@@ -54,9 +54,11 @@ Banner {{ configure_sshd_banner }}
 # Accept locale-related environment variables
 AcceptEnv LANG LC_*
 
+{% if configure_sshd_setup_sftp %}
 # override default of no subsystems
 Subsystem	sftp	{{ configure_sshd_sftpserver }}/sftp-server
 
+{% endif %}
 Ciphers {{ configure_sshd_ciphers }}
 KexAlgorithms {{ configure_sshd_kexalgorithms }}
 MACs {{ configure_sshd_macs }}
