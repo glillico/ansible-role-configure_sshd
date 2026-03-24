@@ -35,39 +35,6 @@ jobs:
         run: |
           yamllint .
 
-  molecule-legacy:
-    needs: lint
-    name: Molecule (Ansible 2.16.x)
-    runs-on: ubuntu-22.04
-    strategy:
-      fail-fast: false
-      matrix:
-        distro:
-          - rockylinux8
-        tag:
-          - latest
-    steps:
-      - name: Check out git repository.
-        uses: actions/checkout@v6
-        with:
-          path: 'glillico.configure_sshd'
-
-      - name: Setup python 3.
-        uses: actions/setup-python@v6
-        with:
-          python-version: '3.10'
-
-      - name: Install package dependencies.
-        run: pip3 install "ansible-core<2.17" docker molecule "molecule-plugins[docker]"
-
-      - name: Perform molecule tests.
-        run: molecule test
-        env:
-          PY_COLORS: '1'
-          ANSIBLE_FORCE_COLOR: '1'
-          MOLECULE_DISTRO: ${{ matrix.distro }}
-          MOLECULE_TAG: ${{ matrix.tag }}
-
   molecule:
     needs: lint
     name: Molecule
